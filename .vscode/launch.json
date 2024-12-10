@@ -1,0 +1,36 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": ".NET Core Launch (web)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/WebEditor/bin/Debug/net8.0/WebEditor.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/WebEditor",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)",
+        "uriFormat": "%s",
+        "action": "openExternally"
+      },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/WebEditor/Views"
+      }
+    }, {
+      "name": ".NET Core Test Attach",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build_test",
+      "program": "dotnet",
+      "args": ["vstest", "${workspaceFolder}/Pipos.GeoLib/test/bin/Debug/net8.0/test.dll"],
+      "cwd": "${workspaceFolder}",
+      "stopAtEntry": false,
+      "console": "internalConsole"
+    },
+  ]
+}

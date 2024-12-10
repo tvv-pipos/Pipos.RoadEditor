@@ -1,0 +1,11 @@
+version: '3'
+services:
+  csharp9:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+    - ..:/workspace:cached
+    - /dev:/dev
+    - /tmp/.X11-unix:/tmp/.X11-unix
+    command: /bin/bash -c "while true; do sleep 1000; done"

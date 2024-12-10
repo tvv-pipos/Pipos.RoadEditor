@@ -1,0 +1,3 @@
+[submodule "Pipos.GeoLib"]
+	path = Pipos.GeoLib
+	url = git@github.com:tvv-pipos/Pipos.GeoLib.git

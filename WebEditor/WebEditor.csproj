@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <SpaRoot>..\WebEditor.WebClient</SpaRoot>
+    <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
+    <SpaProxyServerUrl>http://localhost:5173</SpaProxyServerUrl>
+    <RootNamespace>WebEditor</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Using Include="WebEditor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="8.*" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.*" />
+    <PackageReference Include="SkiaSharp" Version="2.88.8" />
+    <PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="2.88.8" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.*" />
+    <PackageReference Include="NetTopologySuite.IO.GeoJSON4STJ" Version="4.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WebEditor.Api\WebEditor.Api.csproj" />
+    <ProjectReference Include="..\WebEditor.Service\WebEditor.Service.csproj" />
+  </ItemGroup>
+
+  <Target Name="CreateWwwrootFolderBuild" AfterTargets="AfterBuild">
+    <MakeDir Directories="$(BuildDir)wwwroot" Condition="!Exists('$(BuildDir)wwwroot')" />
+  </Target>
+
+  <Target Name="CreateAppDataFolder" BeforeTargets="Publish">
+    <MakeDir Directories="$(PublishDir)App_Data" Condition="!Exists('$(PublishDir)App_Data')" />
+    <Exec Command="npm run build" WorkingDirectory="../WebEditor.WebClient" />
+    <RemoveDir Directories="$(PublishDir)wwwroot" />
+    <ItemGroup>
+      <CopyDist Include="../WebEditor.WebClient/dist/**/*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(CopyDist)" DestinationFiles="@(CopyDist->'$(PublishDir)wwwroot\%(RecursiveDir)%(Filename)%(Extension)')" />
+  </Target>
+
+</Project>
