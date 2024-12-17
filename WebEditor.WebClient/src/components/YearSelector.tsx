@@ -26,7 +26,7 @@ const YearSelector: React.FC = observer(() => {
 
     return (
         <FormControl className={classes.formControl} style={{ position: 'fixed' }} sx={{ m: 1, minWidth: 120 }}>
-            <Paper elevation={5} sx={{ backgroundColor:'#FFFFFF00', m:0, p:0, display: "inline-grid"}}  >
+            <Paper elevation={5} sx={{ backgroundColor: '#FFFFFF00', m: 0, p: 0, display: "inline-grid" }}  >
                 <InputLabel id="year-select-label">År</InputLabel>
                 <Select
                     labelId="year-select-label"
@@ -36,11 +36,6 @@ const YearSelector: React.FC = observer(() => {
                 >
                     <MenuItem value="2024">2024</MenuItem>
                     <MenuItem value="2023">2023</MenuItem>
-                    <MenuItem value="2022">2022</MenuItem>
-                    <MenuItem value="2021">2021</MenuItem>
-                    <MenuItem value="2020">2020</MenuItem>
-                    <MenuItem value="2014">2014</MenuItem>
-                    <MenuItem value="2008">2008</MenuItem>
                 </Select>
             </Paper>
         </FormControl>
@@ -48,3 +43,11 @@ const YearSelector: React.FC = observer(() => {
 });
 
 export default YearSelector;
+
+/*
+<MenuItem value="2022">2022</MenuItem>
+<MenuItem value="2021">2021</MenuItem>
+<MenuItem value="2020">2020</MenuItem>
+<MenuItem value="2014">2014</MenuItem>
+<MenuItem value="2008">2008</MenuItem>
+*/

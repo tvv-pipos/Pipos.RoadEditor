@@ -95,20 +95,26 @@ public class RoadTileController : ControllerBase
 
     private void CreateDatabaseAndTableIfNotExists()
     {
-        using (var connection = new SQLiteConnection(ConnectionString))
+        try
         {
-            connection.Open();
-            using (var command = new SQLiteCommand(@"
-            CREATE TABLE IF NOT EXISTS TileCache (
-                tileId TEXT PRIMARY KEY,
-                tile BLOB
-            );
-            CREATE INDEX IF NOT EXISTS idx_tileId ON TileCache(tileId);
-        ", connection))
+            using (var connection = new SQLiteConnection(ConnectionString))
             {
-                command.ExecuteNonQuery();
+                connection.Open();
+                using (var command = new SQLiteCommand(@"
+                CREATE TABLE IF NOT EXISTS TileCache (
+                    tileId TEXT PRIMARY KEY,
+                    tile BLOB
+                );
+                CREATE INDEX IF NOT EXISTS idx_tileId ON TileCache(tileId);
+            ", connection))
+                {
+                    command.ExecuteNonQuery();
+                }
             }
+        } 
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
         }
     }
-
 }
